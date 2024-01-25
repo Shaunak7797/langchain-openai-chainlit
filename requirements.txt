@@ -7,3 +7,4 @@ PyPDF2
 pypdf
 pandas
 tabulate
+langchain_openai
