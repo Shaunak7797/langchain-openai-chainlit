@@ -15,9 +15,11 @@ import io
 import chainlit as cl
 import PyPDF2
 from io import BytesIO
-
-
+from langchain_openai import AzureOpenAIEmbeddings
 from dotenv import load_dotenv
+
+os.environ["AZURE_OPENAI_API_KEY"] = "583322df8e014fa494f21e7d10c39efa"
+os.environ["AZURE_OPENAI_ENDPOINT"] = "https://openai01dev.openai.azure.com"
 
 # Load environment variables from .env file
 load_dotenv()
@@ -92,7 +94,11 @@ async def on_chat_start():
     metadatas = [{"source": f"{i}-pl"} for i in range(len(texts))]
 
     # Create a Chroma vector store
-    embeddings = OpenAIEmbeddings()
+    #embeddings = OpenAIEmbeddings()
+    embeddings = AzureOpenAIEmbeddings(
+    azure_deployment="GRACE_Embed_Ada002",
+    openai_api_version="2023-05-15",
+)
     docsearch = await cl.make_async(Chroma.from_texts)(
         texts, embeddings, metadatas=metadatas
     )
