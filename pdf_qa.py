@@ -82,7 +82,7 @@ async def on_chat_start():
 
     # Read the PDF file
     # pdf_stream = BytesIO(file.content)
-    pdf_stream = BytesIO(file.file)
+    pdf_stream = BytesIO(file)
     pdf = PyPDF2.PdfReader(pdf_stream)
     pdf_text = ""
     for page in pdf.pages:
