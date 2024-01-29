@@ -8,3 +8,4 @@ pypdf
 pandas
 tabulate
 langchain_openai
+sqlite3 >= 3.35.0
